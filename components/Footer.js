@@ -26,6 +26,57 @@ export default function Footer() {
               </>
             }
         </div>
+
+        <style jsx>{`
+          footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex: 0 0 auto;
+            font-size: 14px;
+
+            position: relative;
+
+            & div:first-child {
+              color: #fff;
+            }
+
+            & div:last-child {
+              color: #fff;
+            }
+          }
+
+          nav {
+            color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            font-size: 20px;
+          }
+
+          a {
+            cursor: pointer;
+            transition: color .2s linear;
+            
+            &:first-child, &:nth-child(2) {
+              color: darkgray;
+              cursor: not-allowed;
+              
+              &:hover {
+                color: darkgray;
+              }
+            }
+
+            & + & {
+              margin-left: 1rem;
+            }
+
+            &:hover {
+              color: #F48432;
+            }
+          }  
+        `}</style>
       </footer>
   )
 }
