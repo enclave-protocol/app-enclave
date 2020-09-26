@@ -29,6 +29,15 @@ export default function Button({children, onClick, ...props}) {
               color: #F48432;
             }
 
+            &.button__nav {
+              width: 114px;
+            }
+
+            &.button__connect {
+              width: 265px;
+              height: 41px;
+            }
+
             &.active {
               color: #FFFFFF;
               background: #F48432;
