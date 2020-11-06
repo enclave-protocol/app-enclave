@@ -29,6 +29,12 @@ export default function Button({children, onClick, ...props}) {
               color: #F48432;
             }
 
+            &.button__swap {
+              width: 216px; 
+              margin: 0 auto; 
+              border-radius: 7px;
+            }
+
             &.button__nav {
               width: 114px;
             }
