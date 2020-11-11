@@ -1,6 +1,9 @@
-import {useState} from "react"
+import {useState, useContext} from "react"
+import ThemeContext from "../theme/provider"
 
 export default function Footer() {
+
+  const {theme} = useContext(ThemeContext)
 
   const [meta, useMeta] = useState({
     ip: '192.168.0.0',
@@ -10,7 +13,7 @@ export default function Footer() {
 
   return (
       <footer>
-        <div>Alpha v. 0.1.0</div>
+        <div>Alpha v. 0.2.1</div>
           <nav>
             <a target='_blank' rel="nofollow noopener">Docs</a>
             <a target='_blank' rel="nofollow noopener">Api</a>
@@ -38,16 +41,16 @@ export default function Footer() {
             position: relative;
 
             & div:first-child {
-              color: #fff;
+              color: ${theme.footer.version};
             }
 
             & div:last-child {
-              color: #fff;
+              color: ${theme.footer.location};
             }
           }
 
           nav {
-            color: #fff;
+            color: ${theme.footer.links};
             position: absolute;
             left: 50%;
             top: 50%;

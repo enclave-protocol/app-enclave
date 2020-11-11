@@ -1,4 +1,9 @@
+import {useContext} from "react"
+import ThemeContext from "../theme/provider"
+
 export default function Button({children, onClick, ...props}) {
+
+  const {theme} = useContext(ThemeContext)
 
   return (
       <>
@@ -9,7 +14,7 @@ export default function Button({children, onClick, ...props}) {
         <style jsx>{`
           button {
             position: relative;
-            background: #000;
+            background: ${theme.button.bg};
             box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.42);
             border-radius: 19px;
             padding: .3rem 0;
@@ -22,8 +27,8 @@ export default function Button({children, onClick, ...props}) {
             justify-content: center;
             cursor: pointer;
 
-            color: #fff;
-            text-shadow: #000;
+            color: ${!color ? theme.header.btnColor : color};
+            text-shadow: ${!textShadow ? theme.header.btnShadow : textShadow};
 
             &:hover {
               color: #F48432;
@@ -46,7 +51,7 @@ export default function Button({children, onClick, ...props}) {
 
             &.active {
               color: #FFFFFF;
-              background: #F48432;
+              background: ${theme.button.bgActive};
               box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.42);
               text-shadow: none;
 
