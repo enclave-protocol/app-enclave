@@ -2,7 +2,7 @@ import Header from "./Header"
 import Head from "next/head"
 import Footer from "./Footer"
 
-export default function Layout({children}) {
+export default function Layout({children, navHandler, btnStyles}) {
 
   return (
     <>
@@ -12,7 +12,7 @@ export default function Layout({children}) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div>
-        <Header />
+        <Header navHandler={navHandler} btnStyles={btnStyles} />
         <main>
           {children}
         </main>
@@ -21,12 +21,13 @@ export default function Layout({children}) {
 
       <style jsx global>{`
           html {
-            background-color: #282C31;
+            background-color: ${theme.name === 'dark' ? '#282C31' : '#EBECF0'};
+            background-image: ${theme.bg.body};
             font-size: 24px;
           }
 
           body {
-            color: #fff;
+            color: ${theme.font.primary};
             overflow-y: scroll;
             font-size: 24px;
 
@@ -35,11 +36,11 @@ export default function Layout({children}) {
             }
 
             &::-webkit-scrollbar-track {
-              background: #000;
+              background: ${theme.scroll.back};
             }
 
             &::-webkit-scrollbar-thumb {
-              background-color: #000;
+              background-color: ${theme.scroll.color};
             }
           }
 

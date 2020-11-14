@@ -12,7 +12,7 @@ export default function Home({tokens}) {
   }
 
   return (
-      <Layout>
+      <Layout navHandler={navHandler} btnStyles={nav === 'Swap'}>
         {
           nav === 'Swap' && (
             <Swap tokens={tokens} />

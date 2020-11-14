@@ -1,4 +1,9 @@
+import {useContext} from "react"
+import ThemeContext from "../theme/provider"
+
 export default function Input({placeholder, children, ...props}) {
+
+  const {theme} = useContext(ThemeContext)
 
   return (
       <>
@@ -24,7 +29,7 @@ export default function Input({placeholder, children, ...props}) {
             outline: none;
             border: 1px solid #bebebe;
             height: 40px;
-            color: #fff;
+            color: ${theme.swap.inputTextColor};
             padding: 5px;
             transition: border .2s linear;
             font-size: 22px;
@@ -38,7 +43,7 @@ export default function Input({placeholder, children, ...props}) {
             }
 
             &::placeholder {
-              color: #fff;
+              color: ${theme.swap.placeholderColor};
             }
           }
 
