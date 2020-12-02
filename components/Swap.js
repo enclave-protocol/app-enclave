@@ -1,6 +1,7 @@
 import Box from "./Box"
 import Button from "./Button"
 import SelectInput from "./SelectInput"
+import Menu from "./Menu"
 import {useState, useContext, useEffect} from "react"
 import ThemeContext from "../theme/provider"
 import {getPrice} from "../pages/api/sol"
@@ -224,7 +225,7 @@ export default function Swap({tokens}) {
             </div>
           </div>
           {
-            menu && <div>Menu</div>
+            menu && <Menu/>
           }
         </Box>
 

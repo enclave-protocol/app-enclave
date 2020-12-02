@@ -1,4 +1,7 @@
 import Layout from "../components/Layout"
+import Swap from "../components/Swap"
+import Pool from "../components/Pool"
+import {useState} from "react"
 import {getTokens} from "./api/api"
 
 export default function Home({tokens}) {
@@ -16,6 +19,12 @@ export default function Home({tokens}) {
         {
           nav === 'Swap' && (
             <Swap tokens={tokens} />
+          )
+        }
+
+        {
+          nav === 'Pool' && (
+            <Pool />
           )
         }
       </Layout>
