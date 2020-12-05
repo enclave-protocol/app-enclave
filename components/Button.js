@@ -29,6 +29,12 @@ export default function Button({children, onClick, ...props}) {
 
             color: ${!color ? theme.header.btnColor : color};
             text-shadow: ${!textShadow ? theme.header.btnShadow : textShadow};
+            
+            &.all {
+              width: 72px;
+              height: 45px;
+              border-radius: 16px;
+            }
 
             &:hover {
               color: #F48432;
@@ -58,11 +64,36 @@ export default function Button({children, onClick, ...props}) {
               &:hover {
                 color: gray;
               }
+
+              &.all {
+                background: linear-gradient(89.95deg, #FD9D57 0.04%, #F680A8 99.95%);
+                text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+              }
             }
 
             img {
               height: 24px;
               width: 24px;
+            }
+          }
+
+          .section__btns {
+            width: 72px;
+            height: 41px;
+
+            & + & {
+              margin-left: 1rem;
+            }
+          }
+
+          .section__btns-pool {
+            width: 116px;
+            height: 35px;
+            font-size: 18px;
+            justify-content: flex-start;
+
+            & + & {
+              margin-left: 1rem;
             }
           }
         `}</style>

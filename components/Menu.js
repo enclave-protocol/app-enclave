@@ -1,60 +1,296 @@
 import Button from "./Button"
 import Input from "./Input"
+import {useState, useContext, useEffect} from "react"
+import ThemeContext from "../theme/provider"
 
 export default function Menu() {
 
+  const {theme} = useContext(ThemeContext)
+
+  const [slipInput, useSlipInput] = useState('')
+  const [delInput, useDelInput] = useState('')
+
+  const [slippage, useSlippage] = useState('0.1')
+  const [delay, useDelay] = useState('Off')
+
+  const [pool, usePool] = useState({
+    1: true,
+    2: false,
+    3: false,
+    4: false
+  })
+
+  const [all, useAll] = useState(false)
+
+  useEffect(() => {
+    let isAll = []
+
+    for (let key in pool) {
+      isAll.push(pool[key])
+    }
+
+    if (isAll.includes(false)) {
+      useAll(false)
+    } else {
+      useAll(true)
+    }
+  }, [pool])
+
+  const allHandler = () => {
+    let newPool = []
+
+    if (!all) {
+      for (let key in pool) {
+        newPool[key] = true
+      }
+    } else {
+      for (let key in pool) {
+        newPool[key] = false
+      }
+    }
+    usePool(() => ({
+      ...newPool
+    }))
+    useAll(prev => !prev)
+  }
+
+  const poolHandler = e => {
+    const target = e.currentTarget.id
+
+    if (all) {
+      useAll(false)
+    }
+
+    usePool(prev => ({
+      ...prev,
+      [target]: !prev[target]
+    }))
+  }
+
+  const slippageHandler = e => {
+    const target = e.target.textContent
+
+    useSlippage(target)
+  }
+
+  const delayHandler = e => {
+    const target = e.target.textContent
+
+    useDelay(target)
+  }
+
+  const changeSlippage = e => {
+    const value = e.target.value
+
+    useSlipInput(value)
+
+    if (value.trim()) {
+      useSlippage(value)
+    }
+  }
+
+  const blurSlippage = e => {
+    const value = e.target.value
+
+    if (!value.trim() || value === '00' || value === '0') {
+      useSlippage('0.1')
+    } else {
+      useSlippage(value)
+    }
+  }
+
+  const changeDelay = e => {
+    const value = e.target.value
+
+    useDelInput(value)
+
+    if (value.trim()) {
+      useDelay(value)
+    }
+  }
+
+  const blurDelay = e => {
+    const value = e.target.value
+
+    if ((value === '0' || !value.trim()) || value.toLowerCase() === 'off') {
+      useDelay('Off')
+    } else if (value.toLowerCase() === 'vrf') {
+      useDelay('VRF')
+    } else {
+      useDelay(value)
+    }
+  }
+
+  const slippageColor = slippage === '0.1' ? '' : slippage === '0.5' ? '' : slippage === '1' ? '' : slippage === '3' ? '' : 'active'
+  const delayColor = delay === 'Off' ? '' : delay === 'VRF' ? '' : delay === '10' ? '' : delay === '20' ? '' : 'active'
+
   return (
       <>
-        <div>
-          <div>Slippage tolerance, <b>%</b></div>
-          <div>
-            <div>
-              <Button>0.1</Button>
-              <Button>0.5</Button>
-              <Button>1</Button>
-              <Button>3</Button>
+        <div className='section first'>
+        <div style={{color: theme.swap.choiceColor}}>Slippage tolerance, <b style={{fontSize: '1.15rem'}}>%</b></div>
+          <div className='wrapper'>
+            <div className='section__btns'>
+              <Button
+                  onClick={slippageHandler}
+                  className={`section__btns ${slippage === '0.1' && 'active'}`}
+                  color={theme.swap.btnColor}
+                  textShadow={theme.swap.btnTextShadow}
+              >0.1</Button>
+              <Button
+                  onClick={slippageHandler}
+                  className={`section__btns ${slippage === '0.5' && 'active'}`}
+                  color={theme.swap.btnColor}
+                  textShadow={theme.swap.btnTextShadow}
+              >0.5</Button>
+              <Button
+                  onClick={slippageHandler}
+                  className={`section__btns ${slippage === '1' && 'active'}`}
+                  color={theme.swap.btnColor}
+                  textShadow={theme.swap.btnTextShadow}
+              >1</Button>
+              <Button
+                  onClick={slippageHandler}
+                  className={`section__btns ${slippage === '3' && 'active'}`}
+                  color={theme.swap.btnColor}
+                  textShadow={theme.swap.btnTextShadow}
+              >3</Button>
             </div>
-            <Input placeholder='Custom' type='number' />
+            <Input 
+                onChange={changeSlippage}
+                onBlur={blurSlippage}
+                className={slippageColor + ' menu'}
+                value={slipInput}
+                placeholder='Custom' 
+                type='number' 
+            />
           </div>
         </div>
 
-        <div>
-          <div>Delay <b>t</b> block</div>
-          <div>
-            <div>
-              <Button>Off</Button>
-              <Button>VRF</Button>
-              <Button>10</Button>
-              <Button>20</Button>
+        <div className='section'>
+        <div style={{color: theme.swap.choiceColor}}>Delay <b style={{fontSize: '1.15rem'}}>t</b> block</div>
+          <div className='wrapper'>
+            <div className='section__btns'>
+              <Button
+                  onClick={delayHandler}
+                  className={`section__btns ${delay === 'Off' && 'active'}`}
+                  color={theme.swap.btnColor}
+                  textShadow={theme.swap.btnTextShadow}
+              >Off</Button>
+              <Button
+                  onClick={delayHandler}
+                  className={`section__btns ${delay === 'VRF' && 'active'}`}
+                  color={theme.swap.btnColor}
+                  textShadow={theme.swap.btnTextShadow}
+              >VRF</Button>
+              <Button
+                  onClick={delayHandler}
+                  className={`section__btns ${delay === '10' && 'active'}`}
+                  color={theme.swap.btnColor}
+                  textShadow={theme.swap.btnTextShadow}
+              >10</Button>
+              <Button
+                  onClick={delayHandler}
+                  className={`section__btns ${delay === '20' && 'active'}`}
+                  color={theme.swap.btnColor}
+                  textShadow={theme.swap.btnTextShadow}
+              >20</Button>
             </div>
-            <Input placeholder='Custom' />
+            <Input 
+                onChange={changeDelay}
+                onBlur={blurDelay}
+                className={delayColor + ' menu'}
+                value={delInput}
+                placeholder='Custom' 
+            />
           </div>
         </div>
 
-        <div>
-          <div>Available pool</div>
-          <div>
-            <div>
-              <Button>
-                <img src='/etoken_pool.svg' alt='enclave'/>
+        <div className='section'>
+        <div style={{color: theme.swap.choiceColor}}>Available pool</div>
+          <div className='wrapper wrapper-pool'>
+            <div className='section__btns-pool'>
+              <Button
+                  onClick={poolHandler}
+                  id='1'
+                  className={`section__btns-pool ${pool[1] ? 'active' : ''}`}
+              >
+                <img className='enc' src='/etoken_pool.svg' alt='enclave'/>
                 Enclave
               </Button>
-              <Button>
+              <Button
+                  onClick={poolHandler}
+                  id='2'
+                  className={`section__btns-pool ${pool[2] ? 'active' : ''}`}
+              >
                 <img src='/uni.svg' alt='uni'/>
                 Uni V2
               </Button>
-              <Button>
+              <Button
+                  onClick={poolHandler}
+                  id='3'
+                  className={`section__btns-pool ${pool[3] ? 'active' : ''}`}
+              >
                 <img src='/1inch.svg' alt='1inch'/>
                 1inch
               </Button>
-              <Button>
+              <Button
+                  onClick={poolHandler}
+                  id='4'
+                  className={`section__btns-pool ${pool[4] ? 'active' : ''}`}
+              >
                 <img src='/balancer.svg' alt='balancer'/>
                 Balancer
               </Button>
             </div>
-            <Button>All</Button>
+            <Button
+                onClick={allHandler}
+                className={all ? 'active all' : 'all'}
+            >All</Button>
           </div>
         </div>
+
+        <style jsx>{`
+          img {
+            height: 17px;
+            margin-right: 8px;
+          }
+
+          .section {
+            margin-top: 50px;
+
+            &.first {
+              margin-top: 65px;
+            }
+          }
+
+          .section__btns {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          .section__btns-pool {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 560px;
+
+            img {
+              height: 20px;
+              margin-left: 10px;
+              margin-right: 6px;
+              
+              &.enc {
+                height: 16px;
+              }
+            }
+          }
+
+          .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: .5rem;
+          }
+        `}</style>
       </>
   )
 }
