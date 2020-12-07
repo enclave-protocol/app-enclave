@@ -77,6 +77,14 @@ export default function Button({children, onClick, ...props}) {
             }
           }
 
+          .button__pool {
+            color: ${theme.pool.btnColor};
+            text-shadow: ${theme.pool.btnTextShadow};
+            width: 260px;
+            border-radius: 7px;
+            margin: 0 auto;
+          }
+
           .section__btns {
             width: 72px;
             height: 41px;
