@@ -1,7 +1,7 @@
 import {useContext} from "react"
 import ThemeContext from "../theme/provider"
 
-export default function Button({children, onClick, ...props}) {
+export default function Button({children, onClick, color, textShadow, ...props}) {
 
   const {theme} = useContext(ThemeContext)
 
@@ -75,6 +75,14 @@ export default function Button({children, onClick, ...props}) {
               height: 24px;
               width: 24px;
             }
+          }
+
+          .button__modal {
+            color: ${theme.pool.btnColor};
+            text-shadow: ${theme.pool.btnTextShadow};
+            border-radius: 7px;
+            width: 230px;
+            height: 40px;
           }
 
           .button__pool {
