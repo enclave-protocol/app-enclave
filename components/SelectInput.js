@@ -6,6 +6,7 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
   const {theme} = useContext(ThemeContext)
   
   const ref = useRef(null)
+  const searchRef = useRef(null)
   const [query, setQuery] = useState('')
   const [active, setActive] = useState(false)
   const [results, setResults] = useState([])

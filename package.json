@@ -1,6 +1,6 @@
 {
   "name": "enclave-app",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "@uniswap/sdk": "^3.0.3",
-    "ethers": "^5.0.19",
-    "next": "^9.5.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "ethers": "^5.0.24",
+    "next": "^10.0.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "node-sass": "^4.14.1",
+    "node-sass": "^5.0.0",
     "styled-jsx-plugin-sass": "^1.0.0"
   }
 }

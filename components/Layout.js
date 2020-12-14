@@ -1,8 +1,12 @@
 import Header from "./Header"
 import Head from "next/head"
 import Footer from "./Footer"
+import ThemeContext from "../theme/provider"
+import {useContext} from "react"
 
-export default function Layout({children, navHandler, btnStyles}) {
+export default function Layout({children, navHandler, btnStyles, gasPriceInit}) {
+
+  const {theme} = useContext(ThemeContext)
 
   return (
     <>
@@ -12,7 +16,7 @@ export default function Layout({children, navHandler, btnStyles}) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div>
-        <Header navHandler={navHandler} btnStyles={btnStyles} />
+        <Header gasPriceInit={gasPriceInit} navHandler={navHandler} btnStyles={btnStyles} />
         <main>
           {children}
         </main>

@@ -2,9 +2,9 @@ import Layout from "../components/Layout"
 import Swap from "../components/Swap"
 import Pool from "../components/Pool"
 import {useState} from "react"
-import {getTokens} from "./api/api"
+import {getTokens, getGasPrice} from "./api/api"
 
-export default function Home({tokens}) {
+export default function Home({tokens, gasPriceInit}) {
 
   const [nav, useNav] = useState('Swap')
 
@@ -15,7 +15,7 @@ export default function Home({tokens}) {
   }
 
   return (
-      <Layout navHandler={navHandler} btnStyles={nav === 'Swap'}>
+      <Layout gasPriceInit={gasPriceInit} navHandler={navHandler} btnStyles={nav === 'Swap'}>
         {
           nav === 'Swap' && (
             <Swap tokens={tokens} />
@@ -32,6 +32,9 @@ export default function Home({tokens}) {
 }
 
 export async function getServerSideProps() {
+  const {fastest} = await getGasPrice()
+  const gasPriceInit = fastest / 10
+
   const {tokens} = await getTokens()
 
   tokens.push({
@@ -45,7 +48,8 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      tokens: tokens
+      tokens: tokens,
+      gasPriceInit
     }
   }
 }

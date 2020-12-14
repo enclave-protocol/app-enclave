@@ -94,8 +94,8 @@ export default function Box({children, title, menu, alert, menuColor, menuHandle
     
             <style jsx>{`
               section {
-                background: #000;
-                box-shadow: #000;
+                background: ${theme.card.bg};
+                box-shadow: ${theme.card.boxShadow};
                 border-radius: 19px;
                 padding: 1.3rem 2rem;
     
@@ -111,8 +111,8 @@ export default function Box({children, title, menu, alert, menuColor, menuHandle
                 h2 {
                   font-size: 36px;
                   font-weight: 400;
-                  color: #fff;
-                  text-shadow: #000;
+                  color: ${theme.header.gasColor};
+                  text-shadow: ${theme.header.gasShadow};
                 }
     
                 svg {

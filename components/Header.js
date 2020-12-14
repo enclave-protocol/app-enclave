@@ -1,14 +1,17 @@
 import Button from "./Button"
+import Image from "next/image"
 import {useState, useContext} from "react"
 import {normalizeAddress, normalizeBalance} from "../utils/helpers"
 import ThemeContext from "../theme/provider"
+import {connectToMetamask} from "../pages/api/api"
 
-export default function Header({navHandler, btnStyles}) {
+export default function Header({gasPriceInit, navHandler, btnStyles}) {
 
   const {theme, toggleTheme} = useContext(ThemeContext)
 
   const [connect, useConnect] = useState(null)
   const [balance, useBalance] = useState(null)
+  const [gasPrice, useGasPrice] = useState(gasPriceInit)
 
   const addressToLabel = connect ? normalizeAddress(connect) : 'Connect wallet'
   const balanceToLabel = balance ? normalizeBalance(balance) : '0.000'
@@ -16,7 +19,11 @@ export default function Header({navHandler, btnStyles}) {
   const connectColor = connect ? theme.header.connectImgAct : theme.header.connectImg
 
   const connectToWallet = async () => {
+    await connectToMetamask()
+  }
 
+  const changeTheme = () => {
+    toggleTheme()
   }
 
   return (
@@ -26,19 +33,19 @@ export default function Header({navHandler, btnStyles}) {
             {
               theme.name === 'dark'
                   ? <a href='/' className='home'>
-                    <img src="/main_dark.svg" alt="logo"/>
+                    <Image src="/main_dark.svg" alt="logo" width={200} height={200} quality={100}/>
                   </a>
                   : <a href='/' className='home'>
-                    <img src="/main_light.png" alt="logo"/>
+                    <Image src="/main_light.png" alt="logo" width={200} height={200} quality={100}/>
                   </a>
             }
             <div className='gas'>
               {
                 theme.name === 'dark'
-                    ? <span className='gas__img'><img src="/gas.svg" alt="gas"/></span>
-                    : <span className='gas__img'><img src="/gas_light.svg" alt="gas"/></span>
+                    ? <span className='gas__img'><Image src="/gas.svg" alt="gas" width={80} height={80}/></span>
+                    : <span className='gas__img'><Image src="/gas_light.svg" alt="gas" width={80} height={80}/></span>
               }
-              <span>111 GWEI</span>
+              <span>{gasPrice} GWEI</span>
             </div>
           </div>
 
@@ -76,9 +83,13 @@ export default function Header({navHandler, btnStyles}) {
               </Button>
             </div>
             <span className='moon'>
-              <img 
+              <Image
+              onClick={changeTheme}
               src={theme.name === 'dark' ? '/moon.svg' : '/sun.svg'}
-              alt={theme.name === 'dark' ? 'moon' : 'sun'}/>
+              alt={theme.name === 'dark' ? 'moon' : 'sun'}
+              width={80}
+              height={80}
+              />
             </span>
           </div>
         </header>

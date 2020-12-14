@@ -1,5 +1,6 @@
-import {useState, useContext} from "react"
+import {useState, useContext, useEffect} from "react"
 import ThemeContext from "../theme/provider"
+import {getIpAndLocation} from "../pages/api/api"
 
 export default function Footer() {
 
@@ -10,6 +11,21 @@ export default function Footer() {
     location: 'Location',
     country: 'Country'
   })
+
+  useEffect(() => {
+    async function getIp() {
+      const {ip, city, country_code} = await getIpAndLocation()
+
+      useMeta(prev => ({
+        ...prev,
+        ip,
+        location: city,
+        country: country_code
+      }))
+    }
+
+    getIp()
+  }, [])
 
   return (
       <footer>

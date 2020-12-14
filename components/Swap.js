@@ -5,6 +5,7 @@ import Menu from "./Menu"
 import {useState, useContext, useEffect} from "react"
 import ThemeContext from "../theme/provider"
 import {getPrice} from "../pages/api/sol"
+import {connectToMetamask, getERC20Balance} from "../pages/api/api"
 
 export default function Swap({tokens}) {
   const {theme} = useContext(ThemeContext)
@@ -98,7 +99,7 @@ export default function Swap({tokens}) {
   const [addressesCount, useAddressesCount] = useState([1, 2, 3])
 
   const addAddress = () => {
-    if (addressesCount.length > 6) return
+    if (addressesCount.length > 21) return
     useAddressesCount(prev => [...prev, prev.length + 1])
   }
 
@@ -127,6 +128,27 @@ export default function Swap({tokens}) {
   }
 
   const maxBalance = async () => {
+    const isConnect = await connectToMetamask()
+
+    if (!isConnect) {
+      return
+    }
+
+    if (!reverse) {
+      const bal = await getERC20Balance(input1.addr)
+      useInput1(prev => ({
+        ...prev,
+        value: bal
+      }))
+      useCurrentChanges(prev => prev === '1' ? '11' : '1')
+    } else {
+      const bal = await getERC20Balance(input2.addr)
+      useInput2(prev => ({
+        ...prev,
+        value: bal
+      }))
+      useCurrentChanges(prev => prev === '2' ? '22' : '2')
+    }
   }
 
   const calcOff = (result) => {

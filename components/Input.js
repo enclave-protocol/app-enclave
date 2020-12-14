@@ -35,6 +35,7 @@ export default function Input({placeholder, children, ...props}) {
             font-size: 22px;
             border-radius: 3px;
             width: 100%;
+            -moz-appearance: textfield;
 
             &::-webkit-outer-spin-button,
             &::-webkit-inner-spin-button {
