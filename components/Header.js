@@ -3,7 +3,8 @@ import Image from "next/image"
 import {useState, useContext} from "react"
 import {normalizeAddress, normalizeBalance} from "../utils/helpers"
 import ThemeContext from "../theme/provider"
-import {connectToMetamask} from "../pages/api/api"
+import {connectToMetamask, getAccount} from "../pages/api/api"
+import {getLocalStorage, setLocalStorage} from "../utils/localStorage"
 
 export default function Header({gasPriceInit, navHandler, btnStyles}) {
 
@@ -18,11 +19,39 @@ export default function Header({gasPriceInit, navHandler, btnStyles}) {
 
   const connectColor = connect ? theme.header.connectImgAct : theme.header.connectImg
 
+  useEffect(() => {
+    const checkConnection = async () => {
+      const isConnect = getLocalStorage('connection')
+      if (isConnect === 'true') {
+        useConnect(await getAccount())
+      }
+    }
+
+    checkConnection()
+  }, [])
+
+  useEffect(() => {
+    const accountListener = async () => {
+      window.ethereum.on('accountsChanged', async (accounts) => {
+        if (!accounts.length) {
+          setLocalStorage('connection', false)
+          useConnect(null)
+        } else {
+          setLocalStorage('connection', true)
+          useConnect(accounts[0])
+        }
+      })
+    }
+
+    accountListener()
+  }, [])
+
   const connectToWallet = async () => {
     await connectToMetamask()
   }
 
   const changeTheme = () => {
+    setLocalStorage('theme', theme.name === 'dark' ? 'light' : 'dark')
     toggleTheme()
   }
 
