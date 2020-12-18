@@ -112,6 +112,91 @@ export default function Button({children, onClick, color, textShadow, ...props})
               margin-left: 1rem;
             }
           }
+
+          @media screen and (min-width: 2000px) {
+            button {
+              font-size: 1.2vw;
+              padding: .37vw 0;
+              border-radius: 1vw;
+
+              &.all {
+                width: 3.6vw;
+                height: 2.2vw;
+                border-radius: .8vw;
+              }
+
+              &.button__nav {
+                width: 5.7vw;
+              }
+
+              &.button__connect {
+                width: 13.25vw;
+                height: 2.05vw;
+              }
+              
+              &.button__swap {
+              width: 10.85vw;
+              border-radius: .3vw;
+            }
+
+              img {
+                height: 1.2vw;
+                width: 1.2vw;
+              }
+            }
+
+            .button__modal {
+              width: 11.4vw;
+              height: 2vw;
+              border-radius: .3vw
+            }
+
+            .button__pool {
+              width: 13vw;
+              border-radius: .3vw;
+            }
+
+            .section__btns {
+              width: 3.6vw;
+              height: 2.05vw;
+            }
+
+            .section__btns-pool {
+              width: 5.8vw;
+              height: 1.8vw;
+              font-size: .9vw;
+            }
+          }
+
+          @media screen and (max-width: 767px) {
+            .section__btns-pool {
+              & + & {
+                margin-left: 0;
+              }
+            }
+          }
+
+          @media screen and (max-width: 450px) {
+            .all {
+              margin-top: 1rem;
+            }
+
+            .section__btns {
+              width: 57px;
+              height: 40px;
+
+              & + & {
+                margin-left: .5rem;
+              }
+            }
+          }
+
+          @media screen and (max-width: 350px) {
+            .button__pool {
+              width: 230px;
+              font-size: 20px;
+            }
+          }
         `}</style>
       </>
   )

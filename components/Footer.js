@@ -29,7 +29,7 @@ export default function Footer() {
 
   return (
       <footer>
-        <div>Alpha v. 0.2.1</div>
+        <div>Alpha v. 0.4.5</div>
           <nav>
             <a target='_blank' rel="nofollow noopener">Docs</a>
             <a target='_blank' rel="nofollow noopener">Api</a>
@@ -94,7 +94,46 @@ export default function Footer() {
             &:hover {
               color: #F48432;
             }
-          }  
+          }
+          
+          @media screen and (min-width: 2000px) {
+            footer {
+              font-size: .7vw;
+            }
+            
+            nav {
+              font-size: 1vw;
+            }
+          }
+          
+          @media screen and (max-width: 880px) {
+            nav {
+              position: static;
+              transform: none;
+            }
+          }
+          
+          @media screen and (max-width: 720px) {
+            footer {
+              flex-direction: column;
+            }
+            
+            nav {
+              margin: .7rem 0;
+            }
+          }
+          
+          @media screen and (max-width: 370px) {
+            footer div:last-child {
+              font-size: 14px;
+            }
+          }
+          
+          @media screen and (max-width: 340px) {
+            footer div:last-child {
+              font-size: 12px;
+            }
+          }
         `}</style>
       </footer>
   )

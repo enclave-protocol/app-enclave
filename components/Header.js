@@ -1,6 +1,6 @@
 import Button from "./Button"
 import Image from "next/image"
-import {useState, useContext} from "react"
+import {useState, useContext, useEffect} from "react"
 import {normalizeAddress, normalizeBalance} from "../utils/helpers"
 import ThemeContext from "../theme/provider"
 import {connectToMetamask, getAccount} from "../pages/api/api"
@@ -221,6 +221,147 @@ export default function Header({gasPriceInit, navHandler, btnStyles}) {
 
             width: 39px;
             height: 39px;
+          }
+
+          @media screen and (min-width: 2000px) {
+            .gas span:first-child {
+              margin-right: .8vw;
+            }
+
+            .left {
+              .home {
+                width: 4.75vw;
+                height: 4.75vw;
+              }
+
+              .gas__img {
+                width: 1.8vw;
+                height: 1.8vw;
+              }
+            }
+
+            .right {
+              .enc {
+                width: .65vw;
+                height: .9vw;
+              }
+            }
+
+            .moon {
+              width: 1.95vw;
+              height: 1.95vw;
+            }
+
+            svg {
+              height: 1.2vw;
+              width: 1.2vw;
+            }
+          }
+
+          @media screen and (max-width: 1300px) {
+            header {
+              margin-bottom: 40px;
+            }
+
+            .left {
+              width: auto;
+            }
+
+            nav {
+              top: 110%;
+            }
+          }
+
+          @media screen and (max-width: 900px) {
+            .gas {
+              & span:first-child {
+                margin-left: 30px;
+              }
+            }
+          }
+
+          @media screen and (max-width: 800px) {
+            header {
+              font-size: 20px;
+            }
+
+            .gas {
+              & span:first-child {
+                display: none;
+              }
+
+              & span:last-child {
+                margin-left: 20px;
+              }
+            }
+          }
+
+          @media screen and (max-width: 700px) {
+            header {
+              margin-bottom: 10vh;
+            }
+
+            nav {
+              position: absolute;
+              top: 140px;
+            }
+
+            .right__btn {
+              position: absolute;
+              right: 50%;
+              transform: translateX(50%);
+              top: 80px;
+            }
+
+            .left {
+              .home {
+                height: 80px;
+                width: 80px;
+              }
+            }
+          }
+
+          @media screen and (max-width: 550px) {
+            header {
+              margin-bottom: 80px;
+            }
+
+            .left {
+              .home {
+                height: 70px;
+                width: 70px;
+              }
+            }
+
+            nav {
+              top: 150px;
+            }
+
+            .right__btn {
+              top: 90px;
+            }
+          }
+
+          @media screen and (max-width: 450px) {
+            nav {
+              div + div {
+                margin-left: 1.5rem;
+              }
+            }
+
+            .etoken {
+              margin-right: 0;
+            }
+
+            .gas {
+              span:last-child {
+                margin-left: 10px;
+              }
+            }
+
+            .moon {
+              margin-left: 10px;
+            }
           }
         `}</style>
       </>

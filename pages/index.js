@@ -3,6 +3,7 @@ import Swap from "../components/Swap"
 import Pool from "../components/Pool"
 import {useState} from "react"
 import {getTokens, getGasPrice} from "./api/api"
+import {motion} from "framer-motion"
 
 export default function Home({tokens, gasPriceInit}) {
 
@@ -18,13 +19,26 @@ export default function Home({tokens, gasPriceInit}) {
       <Layout gasPriceInit={gasPriceInit} navHandler={navHandler} btnStyles={nav === 'Swap'}>
         {
           nav === 'Swap' && (
-            <Swap tokens={tokens} />
+              <motion.div
+                      initial={{opacity: 0}}
+                      animate={{opacity: 1}}
+                      exit={{opacity: 0}}
+                      transition={{duration: 0.8}}
+                  >
+                <Swap tokens={tokens} />
+              </motion.div>
           )
         }
-
         {
           nav === 'Pool' && (
-            <Pool />
+              <motion.div
+                      initial={{opacity: 0}}
+                      animate={{opacity: 1}}
+                      exit={{opacity: 0}}
+                      transition={{duration: 0.8}}
+                  >
+                <Pool />
+              </motion.div>
           )
         }
       </Layout>

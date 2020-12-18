@@ -1,5 +1,6 @@
 import {useState, useContext} from "react"
 import ThemeContext from "../theme/provider"
+import {motion, AnimatePresence} from "framer-motion"
 
 export default function Box({children, title, menu, alert, menuColor, menuHandler, ...props}) {
       const {theme} = useContext(ThemeContext)
@@ -79,10 +80,22 @@ export default function Box({children, title, menu, alert, menuColor, menuHandle
                           <path d="M12 17H12.01" stroke={theme.icon.menu} strokeOpacity="0.74" strokeWidth="2"
                                 strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
-    
-                        {
-                          alertShow && <span>Not available in Alpha version</span>
-                        }
+
+                        <AnimatePresence>
+                          {
+                            alertShow && (
+                                <motion.div
+                                    initial={{opacity: 0}}
+                                    animate={{opacity: 1}}
+                                    exit={{opacity: 0}}
+                                    transition={{duration: .2}}
+                                    className={`alert ${theme.name === 'light' ? 'light' : ''}`}
+                                >
+                                  <span>Not available in Alpha version</span>
+                                </motion.div>
+                            )
+                          }
+                        </AnimatePresence>
                       </>
                   )
                 }
@@ -125,6 +138,37 @@ export default function Box({children, title, menu, alert, menuColor, menuHandle
     
                   width: 30px;
                   height: 30px;
+                }
+              }
+
+              @media screen and (max-width: 600px) {
+                section {
+                  h2 {
+                    max-width: 200px;
+                    margin: 0 auto;
+                  }
+                }
+              }
+    
+              @media screen and (min-width: 2000px) {
+                section {
+                  padding: 1.6vw 2.4vw;
+                  border-radius: 1vw;
+                  
+                  & + & {
+                    margin-top: 1.25vw;
+                  }
+                }
+    
+                div:first-child {
+                  h2 {
+                    font-size: 1.8vw;
+                  }
+    
+                  svg {
+                    width: 1.5vw;
+                    height: 1.5vw;
+                  }
                 }
               }
             `}</style>

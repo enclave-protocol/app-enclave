@@ -1,3 +1,4 @@
+import "../styles/animations.scss"
 import {useState, useEffect} from "react"
 import global from '../styles/global'
 import ThemeContext from "../theme/provider"
