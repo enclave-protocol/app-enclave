@@ -142,6 +142,56 @@ export default function Pool() {
               margin-right: 1rem;
             }
           }
+
+          @media screen and (min-width: 2000px) {
+            .wrapper {
+              max-width: 28.5vw;
+            }
+
+            svg, img {
+              height: 1.2vw;
+              width: 1.2vw;
+              
+              &.enc {
+                height: 1vw;
+              }
+            }
+            
+            .card {
+              padding: .5vw 1.25vw;
+              margin: 2.75vw auto 1.75vw;
+            }
+            
+            .card div:last-child {
+              margin-top: 1.35vw;
+              font-size: 1vw;
+            }
+          }
+
+          @media screen and (max-width: 720px) {
+            .grid {
+              grid-template-columns: 1fr;
+
+              & * {
+                margin: 0 auto;
+              }
+            }
+          }
+
+          @media screen and (max-width: 450px) {
+            .card div:last-child {
+              display: flex;
+              flex-direction: column;
+
+              span + span {
+                margin-top: 20px;
+              }
+
+              span:last-child {
+                align-self: center;
+              }
+            }
+          }
         `}</style>
       </>
   )

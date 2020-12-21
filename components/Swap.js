@@ -404,6 +404,133 @@ export default function Swap({tokens}) {
               transform: rotate(360deg);
             }
           }
+
+          @media screen and (min-width: 2000px) {
+            .enc {
+              width: .65vw;
+              height: .9vw;
+            }
+
+            .swap {
+              margin-top: .75vw;
+            }
+
+            .labels {
+              margin-top: 1.25vw;
+
+              label {
+                width: 14.6vw;
+              }
+            }
+
+            .swap img {
+              transform: translateY(calc(-50% + 1vw));
+            }
+
+            .lds-dual-ring {
+              transform: translateY(calc(-50% + 1vw));
+            }
+
+            .lds-dual-ring:after {
+              width: 1.15vw;
+              height: 1.15vw;
+            }
+
+            img {
+              height: 1.2vw;
+            }
+
+            .wrapper {
+              margin: 2.5vw auto 0;
+              max-width: 26vw;
+            }
+
+            .addresses {
+              & input {
+                height: 1.7vw;
+                font-size: 1.1vw;
+                padding: .35vw;
+              }
+
+              input + input {
+                margin-top: .6vw;
+              }
+            }
+          }
+
+          @media screen and (max-width: 767px) {
+            .labels {
+              label {
+                width: 34vw;
+              }
+            }
+          }
+
+          @media screen and (max-width: 650px) {
+            .wrapper__inputs {
+              position: relative;
+              width: 290px;
+              margin: 0 auto;
+            }
+
+
+            .swap {
+              flex-direction: column;
+              align-items: center;
+            }
+
+            .swap.reverse {
+              flex-direction: column-reverse;
+
+              .input_comp:last-child {
+                margin-top: 0;
+              }
+
+              .input_comp:first-child {
+                margin-top: 25px;
+              }
+            }
+
+            .swap img {
+              align-self: center;
+              transform: none;
+            }
+
+            .lds-dual-ring {
+              align-self: center;
+              transform: none;
+            }
+
+            .input_comp:last-child {
+              margin-top: 25px;
+            }
+
+            .labels {
+              label:first-child {
+                position: absolute;
+                top: 0;
+                left: 0;
+              }
+
+              label:last-child {
+                position: absolute;
+                top: 113px;
+                left: 0;
+              }
+            }
+          }
+
+          @media screen and (max-width: 440px) {
+            .wrapper__inputs {
+              width: 260px;
+            }
+          }
+
+          @media screen and (max-width: 370px) {
+            .wrapper__inputs {
+              width: 220px;
+            }
+          }
         `}</style>
       </>
   )

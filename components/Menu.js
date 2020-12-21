@@ -290,6 +290,72 @@ export default function Menu() {
             align-items: center;
             margin-top: .5rem;
           }
+
+          @media screen and (min-width: 2000px) {
+            .section__btns-pool {
+              max-width: none;
+
+              img {
+                height: 1vw;
+                margin-left: .6vw;
+                margin-right: .25vw;
+                
+                &.enc {
+                height: .8vw;
+                }
+              }
+            }
+          }
+
+          @media screen and (max-width: 767px) {
+            .section__btns-pool {
+              width: 300px;
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              grid-column-gap: 1rem;
+              grid-row-gap: 1rem;
+              margin: 0 auto;
+            }
+          }
+
+          @media screen and (max-width: 710px) {
+            .wrapper {
+              flex-wrap: wrap;
+              justify-content: center;
+            }
+
+            .wrapper-pool {
+              flex-wrap: nowrap;
+            }
+
+            .section {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+
+              &.first {
+                margin-top: 50px;
+              }
+            }
+          }
+
+          @media screen and (max-width: 450px) {
+            .section {
+              &.first {
+                margin-top: 30px;
+              }
+            }
+
+            .wrapper-pool {
+              flex-direction: column;
+            }
+
+            .section__btns-pool {
+              justify-content: center;
+              width: auto;
+            }
+          }
         `}</style>
       </>
   )

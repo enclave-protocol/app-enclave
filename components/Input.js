@@ -55,6 +55,54 @@ export default function Input({placeholder, children, ...props}) {
           input.active {
             border: 1px solid #F48432;
           }
+
+          @media screen and (min-width: 2000px) {
+            .menu {
+              width: 14.5vw;
+            }
+            
+            input {
+              height: 2vw;
+              font-size: 1.1vw;
+            }
+          }
+
+          @media screen and (max-width: 820px) {
+            .menu {
+              width: 33vw;
+            }
+          }
+
+          @media screen and (max-width: 777px) {
+            .menu {
+              width: 25vw;
+            }
+          }
+
+          @media screen and (max-width: 710px) {
+            .menu {
+              margin-top: 20px;
+              width: 34vw;
+            }
+          }
+
+          @media screen and (max-width: 650px) {
+            .menu {
+              width: 290px;
+            }
+          }
+
+          @media screen and (max-width: 435px) {
+            .menu {
+              width: 260px;
+            }
+          }
+
+          @media screen and (max-width: 370px) {
+            .menu {
+              width: 220px;
+            }
+          }
         `}</style>
       </>
   )

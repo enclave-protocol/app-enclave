@@ -29,7 +29,7 @@ export default function Footer() {
 
   return (
       <footer>
-        <div>Alpha v. 0.4.5</div>
+        <div>Alpha v. 0.4.6</div>
           <nav>
             <a target='_blank' rel="nofollow noopener">Docs</a>
             <a target='_blank' rel="nofollow noopener">Api</a>

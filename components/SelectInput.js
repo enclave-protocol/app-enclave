@@ -331,6 +331,110 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
           .input__swap {
             width: 290px;
           }
+
+          @media screen and (min-width: 2000px) {
+            .inputbox {
+              div {
+                svg {
+                  margin-left: .65vw;
+                  margin-right: .65vw;
+                  width: .8vw;
+                  height: .4vw;
+                }
+              }
+            }
+
+            .form {
+              height: 2vw;
+
+              img {
+                height: 1.1vw;
+                width: 1.1vw;
+              }
+
+              a {
+                margin-right: 1.25vw;
+                font-size: .9vw;
+                right: 2.5vw
+              }
+            }
+
+            .btn {
+              font-size: .8vw;
+            }
+
+            .search {
+              padding: 0.65vw;
+              height: 2vw;
+              font-size: 1.1vw;
+            }
+
+            .search__wrapper {
+              top: 2vw;
+              max-height: 19.5vw;
+              
+              img {
+                height: 2vw;
+                width: .9vw;
+              }
+
+              div:first-child {
+                margin: .3vw .5vw;
+              }
+
+              input {
+                padding: .45vw;
+                height: 2vw;
+                font-size: .9vw;
+              }
+            }
+
+            .results {
+              font-size: .9vw;
+            }
+
+            .result {
+              padding: .25vw .6vw;
+
+              img {
+                width: .9vw;
+                height: .9vw;
+                margin-right: .4vw;
+              }
+            }
+
+            .wrapper__btn {
+              height: 1.25vw;
+            }
+
+            .input__swap {
+              width: 14.6vw;
+            }
+          }
+
+          @media screen and (max-width: 767px) {
+            .input__swap {
+              width: 34vw;
+            }
+          }
+
+          @media screen and (max-width: 650px) {
+            .input__swap {
+              width: 290px;
+            }
+          }
+
+          @media screen and (max-width: 380px) {
+            .input__swap {
+              width: 260px;
+            }
+          }
+
+          @media screen and (max-width: 370px) {
+            .input__swap {
+              width: 220px;
+            }
+          }
         `}</style>
       </>
   )

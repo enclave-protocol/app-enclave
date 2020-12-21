@@ -121,6 +121,85 @@ const PopUp = ({close}) => {
               cursor: pointer;
             }
           }
+
+          @media screen and (min-width: 2000px) {
+            section {
+              > div {
+                width: 28.75vw;
+                height: 12.5vw;
+                border-radius: 1vw;
+
+                h2 {
+                  font-size: 1.6vw;
+                }
+              }
+            }
+
+            .content {
+              margin: 2.5vw auto 1.8vw;
+
+              svg:nth-child(2) {
+                margin-top: .1vw;
+                margin-right: .75vw;
+
+                width: 1.5vw;
+                height: 1.5vw;
+              }
+
+              svg:first-child {
+                top: 1vw;
+                right: 1vw;
+
+                width: .7vw;
+                height: .7vw;
+              }
+            }
+          }
+
+          @media screen and (max-width: 620px) {
+            section {
+              > div {
+                width: 450px;
+                text-align: center;
+
+                h2 {
+                  font-size: 26px;
+                }
+              }
+            }
+
+            .content {
+              svg:nth-child(2) {
+                margin-top: 0;
+              }
+            }
+          }
+
+          @media screen and (max-width: 500px) {
+            section {
+              > div {
+                width: 350px;
+              }
+            }
+
+            .content {
+              flex-direction: column;
+              margin: .5rem auto 1rem;
+
+              svg:nth-child(2) {
+                margin-bottom: 10px;
+                margin-right: 0;
+              }
+            }
+          }
+
+          @media screen and (max-width: 500px) {
+            section {
+              > div {
+                width: 300px;
+              }
+            }
+          }
         `}</style>
       </>
   )

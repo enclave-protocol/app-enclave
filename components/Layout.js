@@ -59,6 +59,12 @@ export default function Layout({children, navHandler, btnStyles, gasPriceInit}) 
             color: #fff;
             text-shadow: none;
           }
+
+          @media screen and (min-width: 2000px) {
+            html, body {
+              font-size: 1.2vw !important;
+            }
+          }
         `}</style>
 
         <style jsx>{`
@@ -77,6 +83,22 @@ export default function Layout({children, navHandler, btnStyles, gasPriceInit}) 
             width: 100%;
             flex: 1 0 auto;
             margin: 3rem auto 2.5rem;
+          }
+
+          @media screen and (max-width: 720px) {
+            main {
+              margin-bottom: 2rem;
+            }
+          }
+
+          @media screen and (min-width: 2000px) {
+            div {
+              max-width: 72vw;
+            }
+
+            main {
+              max-width: 39.5vw;
+            }
           }
         `}</style>
     </>

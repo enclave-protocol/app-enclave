@@ -149,6 +149,12 @@ export default function Box({children, title, menu, alert, menuColor, menuHandle
                   }
                 }
               }
+
+              @media screen and (max-width: 450px) {
+                section {
+                  padding: 1rem 1.3rem;
+                }
+              }
     
               @media screen and (min-width: 2000px) {
                 section {
