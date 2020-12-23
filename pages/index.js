@@ -2,7 +2,7 @@ import Layout from "../components/Layout"
 import Swap from "../components/Swap"
 import Pool from "../components/Pool"
 import {useState} from "react"
-import {getTokens, getGasPrice} from "./api/api"
+import {getTokens, getGasPrice} from "../api/api"
 import {motion} from "framer-motion"
 
 export default function Home({tokens, gasPriceInit}) {

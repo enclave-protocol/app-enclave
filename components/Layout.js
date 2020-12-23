@@ -14,6 +14,26 @@ export default function Layout({children, navHandler, btnStyles, gasPriceInit}) 
         <title>Enclave App</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/meta/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/meta/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="/meta/favicon-16x16.png"/>
+        <link rel="mask-icon" href="/meta/safari-pinned-tab.svg" color="#5bbad5"/>
+        <link rel="manifest" href="/meta/site.webmanifest"/>
+        <link rel="manifest" href="/meta/manifest.json"/>
+        <meta name="msapplication-TileColor" content="#da532c"/>
+        <meta name="theme-color" content="#ffffff"/>
+        <meta name="description" content="Privacy solutions for Ethereum transactions."/>
+        <meta property="og:url" content="https://app.enclave.systems/"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Enclave App"/>
+        <meta property="og:description" content="Privacy solutions for Ethereum transactions."/>
+        <meta property="og:image" content="https://app.enclave.systems/logo.png"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:domain" content="enclave.zone"/>
+        <meta property="twitter:url" content="https://app.enclave.systems/"/>
+        <meta name="twitter:title" content="Enclave App"/>
+        <meta name="twitter:description" content="Privacy solutions for Ethereum transactions."/>
+        <meta name="twitter:image" content="https://app.enclave.systems/logo.png"/>
       </Head>
       <div>
         <Header gasPriceInit={gasPriceInit} navHandler={navHandler} btnStyles={btnStyles} />
@@ -28,6 +48,8 @@ export default function Layout({children, navHandler, btnStyles, gasPriceInit}) 
             background-color: ${theme.name === 'dark' ? '#282C31' : '#EBECF0'};
             background-image: ${theme.bg.body};
             font-size: 24px;
+            scrollbar-color: ${theme.name === 'dark' ? '#282C31 #101215' : '#EBECF0 #D0D9E0'};
+            scrollbar-width: thin;
           }
 
           body {
@@ -40,11 +62,11 @@ export default function Layout({children, navHandler, btnStyles, gasPriceInit}) 
             }
 
             &::-webkit-scrollbar-track {
-              background: ${theme.scroll.back};
+              background: ${theme.scroll.color};
             }
 
             &::-webkit-scrollbar-thumb {
-              background-color: ${theme.scroll.color};
+              background-color: ${theme.scroll.back};
             }
           }
 
@@ -63,6 +85,12 @@ export default function Layout({children, navHandler, btnStyles, gasPriceInit}) 
           @media screen and (min-width: 2000px) {
             html, body {
               font-size: 1.2vw !important;
+            }
+          }
+
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            html, body {
+              font-size: .9vw !important;
             }
           }
         `}</style>
@@ -98,6 +126,16 @@ export default function Layout({children, navHandler, btnStyles, gasPriceInit}) 
 
             main {
               max-width: 39.5vw;
+            }
+          }
+
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            div {
+              max-width: 60vw;
+            }
+
+            main {
+              max-width: 32vw;
             }
           }
         `}</style>

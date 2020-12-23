@@ -63,7 +63,18 @@ export default function Input({placeholder, children, ...props}) {
             
             input {
               height: 2vw;
-              font-size: 1.1vw;
+              font-size: .9vw;
+            }
+          }
+
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            .menu {
+              width: 11.5vw;
+            }
+
+            input {
+              height: 1.6vw;
+              font-size: .9vw;
             }
           }
 

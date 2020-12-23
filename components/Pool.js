@@ -168,6 +168,31 @@ export default function Pool() {
             }
           }
 
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            .wrapper {
+              max-width: 26vw;
+            }
+
+            svg, img {
+              height: 1vw;
+              width: 1vw;
+
+              &.enc {
+                height: .9vw;
+              }
+            }
+
+            .card {
+              padding: .5vw 1.1vw;
+              margin: 2.4vw auto 1.6vw;
+            }
+
+            .card div:last-child {
+              margin-top: 1.2vw;
+              font-size: .8vw;
+            }
+          }
+
           @media screen and (max-width: 720px) {
             .grid {
               grid-template-columns: 1fr;

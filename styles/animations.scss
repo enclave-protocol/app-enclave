@@ -38,3 +38,14 @@
     }
   }
 }
+
+@media screen and (min-width: 3000px) and (max-height: 1500px) {
+  .alert {
+    top: -.9vw;
+    right: -.9vw;
+    width: 14vw;
+    height: 3.5vw;
+    border-radius: .5vw;
+    font-size: 0.7vw;
+  }
+}

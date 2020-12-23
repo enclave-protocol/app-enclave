@@ -177,6 +177,28 @@ export default function Box({children, title, menu, alert, menuColor, menuHandle
                   }
                 }
               }
+
+              @media screen and (min-width: 3000px) and (max-height: 1500px) {
+                section {
+                  padding: 1.3vw 1.8vw;
+                  border-radius: .75vw;
+
+                  & + & {
+                    margin-top: .9vw;
+                  }
+                }
+
+                div:first-child {
+                  h2 {
+                    font-size: 1.3vw;
+                  }
+
+                  svg {
+                    width: 1.1vw;
+                    height: 1.1vw;
+                  }
+                }
+              }
             `}</style>
           </>
       )

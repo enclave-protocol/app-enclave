@@ -4,8 +4,8 @@ import SelectInput from "./SelectInput"
 import Menu from "./Menu"
 import {useState, useContext, useEffect} from "react"
 import ThemeContext from "../theme/provider"
-import {getPrice} from "../pages/api/sol"
-import {connectToMetamask, getERC20Balance} from "../pages/api/api"
+import {getPrice} from "../api/getPrices"
+import {connectToMetamask, getERC20Balance} from "../api/api"
 
 export default function Swap({tokens}) {
   const {theme} = useContext(ThemeContext)
@@ -454,6 +454,59 @@ export default function Swap({tokens}) {
 
               input + input {
                 margin-top: .6vw;
+              }
+            }
+          }
+
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            .enc {
+              width: .45vw;
+              height: .6vw;
+            }
+
+            .swap {
+              margin-top: .5vw;
+            }
+
+            .labels {
+              margin-top: 1.15vw;
+
+              label {
+                width: 11.5vw;
+              }
+            }
+
+            .swap img {
+              transform: translateY(calc(-50% + .8vw));
+            }
+
+            .lds-dual-ring {
+              transform: translateY(calc(-50% + .8vw));
+            }
+
+            .lds-dual-ring:after {
+              width: 1vw;
+              height: 1vw;
+            }
+
+            img {
+              height: 1.05vw;
+            }
+
+            .wrapper {
+              margin: 2.3vw auto 0;
+              max-width: 22vw;
+            }
+
+            .addresses {
+              & input {
+                height: 1.4vw;
+                font-size: .9vw;
+                padding: .25vw;
+              }
+
+              input + input {
+                margin-top: .45vw;
               }
             }
           }

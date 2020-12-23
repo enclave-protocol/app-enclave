@@ -3,7 +3,7 @@ import Image from "next/image"
 import {useState, useContext, useEffect} from "react"
 import {normalizeAddress, normalizeBalance} from "../utils/helpers"
 import ThemeContext from "../theme/provider"
-import {connectToMetamask, getAccount} from "../pages/api/api"
+import {connectToMetamask, getAccount} from "../api/api"
 import {getLocalStorage, setLocalStorage} from "../utils/localStorage"
 
 export default function Header({gasPriceInit, navHandler, btnStyles}) {
@@ -255,6 +255,41 @@ export default function Header({gasPriceInit, navHandler, btnStyles}) {
             svg {
               height: 1.2vw;
               width: 1.2vw;
+            }
+          }
+
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            .gas span:first-child {
+              margin-right: .6vw;
+            }
+
+            .left {
+              .home {
+                width: 3.8vw;
+                height: 3.8vw;
+              }
+
+              .gas__img {
+                width: 1.5vw;
+                height: 1.5vw;
+              }
+            }
+
+            .right {
+              .enc {
+                width: .45vw;
+                height: .7vw;
+              }
+            }
+
+            .moon {
+              width: 1.5vw;
+              height: 1.5vw;
+            }
+
+            svg {
+              height: 1vw;
+              width: 1vw;
             }
           }
 

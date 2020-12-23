@@ -168,6 +168,61 @@ export default function Button({children, onClick, color, textShadow, ...props})
             }
           }
 
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            button {
+              font-size: .9vw;
+              padding: .33vw 0;
+              border-radius: 1vw;
+
+              &.all {
+                width: 3.1vw;
+                height: 1.8vw;
+                border-radius: .6vw;
+              }
+
+              &.button__nav {
+                width: 4.5vw;
+              }
+
+              &.button__connect {
+                width: 9.75vw;
+                height: 1.6vw;
+              }
+
+              &.button__swap {
+                width: 8vw;
+                border-radius: .2vw;
+              }
+
+              img {
+                height: 1vw;
+                width: 1vw;
+              }
+            }
+
+            .button__modal {
+              width: 9vw;
+              height: 1.6vw;
+              border-radius: .2vw
+            }
+
+            .button__pool {
+              width: 11.65vw;
+              border-radius: .3vw;
+            }
+
+            .section__btns {
+              width: 2.8vw;
+              height: 1.7vw;
+            }
+
+            .section__btns-pool {
+              width: 4.5vw;
+              height: 1.5vw;
+              font-size: .7vw;
+            }
+          }
+
           @media screen and (max-width: 767px) {
             .section__btns-pool {
               & + & {

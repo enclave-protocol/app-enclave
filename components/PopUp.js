@@ -156,6 +156,36 @@ const PopUp = ({close}) => {
             }
           }
 
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            section {
+              > div {
+                width: 26vw;
+                height: 11vw;
+                border-radius: .75vw;
+
+                h2 {
+                  font-size: 1.3vw;
+                }
+              }
+            }
+
+            .content {
+              margin: 2.3vw auto 1.6vw;
+
+              svg:nth-child(2) {
+                width: 1.3vw;
+                height: 1.3vw;
+              }
+
+              svg:first-child {
+                top: .8vw;
+                right: .8vw;
+                width: .6vw;
+                height: .6vw;
+              }
+            }
+          }
+
           @media screen and (max-width: 620px) {
             section {
               > div {

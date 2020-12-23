@@ -307,6 +307,20 @@ export default function Menu() {
             }
           }
 
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            .section__btns-pool {
+              img {
+                height: .7vw;
+                margin-left: .4vw;
+                margin-right: .25vw;
+
+                &.enc {
+                  height: .66vw;
+                }
+              }
+            }
+          }
+
           @media screen and (max-width: 767px) {
             .section__btns-pool {
               width: 300px;

@@ -71,7 +71,7 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
                     className='search'
                     value={value.replace(',', '.')}
                     id={`${id}`}
-                    style={{width: `${!token && !logo ? '100%' : '61.2%'}`}}
+                    style={{width: `${!token && !logo ? '100%' : '52%'}`}}
                     onKeyPress={keyDown}
                 />
                 <div>
@@ -255,6 +255,10 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
             background: ${theme.dropdown.dropdownColor};
             box-shadow: ${theme.dropdown.dropdownShadow};
             
+            &:focus {
+              outline: none;
+            }
+            
             img {
               height: 40px;
               width: 18px;
@@ -272,6 +276,9 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
               background-color: ${theme.dropdown.fontColor};
               border-radius: 5px;
             }
+            
+            scrollbar-color: ${theme.name === 'dark' ? '#282C31 #101215' : '#EBECF0 #D0D9E0'};
+            scrollbar-width: thin;
 
             div:first-child {
               margin: .2rem .5rem;
@@ -409,6 +416,86 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
 
             .input__swap {
               width: 14.6vw;
+            }
+          }
+
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            .inputbox {
+              div {
+                svg {
+                  margin-left: .5vw;
+                  margin-right: .5vw;
+                  width: .6vw;
+                  height: .4vw;
+                }
+              }
+            }
+
+            .form {
+              height: 1.6vw;
+
+              img {
+                height: .9vw;
+                width: .9vw;
+              }
+
+              a {
+                margin-right: .8vw;
+                font-size: .8vw;
+                right: 2.3vw
+              }
+            }
+
+            .btn {
+              font-size: .6vw;
+            }
+
+            .search {
+              padding: 0.5vw;
+              height: 1.6vw;
+              font-size: .9vw;
+            }
+
+            .search__wrapper {
+              top: 1.6vw;
+              max-height: 18.5vw;
+
+              img {
+                height: 1.5vw;
+                width: .8vw;
+              }
+
+              div:first-child {
+                margin: .2vw .5vw;
+              }
+
+              input {
+                padding: .45vw;
+                height: 1.6vw;
+                font-size: .75vw;
+              }
+            }
+
+            .results {
+              font-size: .75vw;
+            }
+
+            .result {
+              padding: .25vw .6vw;
+
+              img {
+                width: .7vw;
+                height: .7vw;
+                margin-right: .5vw;
+              }
+            }
+
+            .wrapper__btn {
+              height: 1vw;
+            }
+
+            .input__swap {
+              width: 11.5vw;
             }
           }
 

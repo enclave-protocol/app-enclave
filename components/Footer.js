@@ -1,6 +1,6 @@
 import {useState, useContext, useEffect} from "react"
 import ThemeContext from "../theme/provider"
-import {getIpAndLocation} from "../pages/api/api"
+import {getIpAndLocation} from "../api/api"
 
 export default function Footer() {
 
@@ -29,7 +29,7 @@ export default function Footer() {
 
   return (
       <footer>
-        <div>Alpha v. 0.4.6</div>
+        <div>Alpha v. 0.4.7</div>
           <nav>
             <a target='_blank' rel="nofollow noopener">Docs</a>
             <a target='_blank' rel="nofollow noopener">Api</a>
@@ -103,6 +103,16 @@ export default function Footer() {
             
             nav {
               font-size: 1vw;
+            }
+          }
+
+          @media screen and (min-width: 3000px) and (max-height: 1500px) {
+            footer {
+              font-size: .5vw;
+            }
+
+            nav {
+              font-size: .7vw;
             }
           }
           
