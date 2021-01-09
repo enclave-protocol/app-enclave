@@ -7,18 +7,19 @@ import {motion} from "framer-motion"
 
 export default function Home({tokens, gasPriceInit}) {
 
-  const [nav, useNav] = useState('Swap')
+  const [nav, useNav] = useState('swap')
 
   const navHandler = e => {
     const target = e.target.textContent
 
+    target.toLowerCase()
     useNav(target)
   }
 
   return (
-      <Layout gasPriceInit={gasPriceInit} navHandler={navHandler} btnStyles={nav === 'Swap'}>
+      <Layout gasPriceInit={gasPriceInit} navHandler={navHandler} btnStyles={nav === 'swap'}>
         {
-          nav === 'Swap' && (
+          nav === 'swap' && (
               <motion.div
                       initial={{opacity: 0}}
                       animate={{opacity: 1}}
@@ -30,7 +31,7 @@ export default function Home({tokens, gasPriceInit}) {
           )
         }
         {
-          nav === 'Pool' && (
+          nav === 'pool' && (
               <motion.div
                       initial={{opacity: 0}}
                       animate={{opacity: 1}}
