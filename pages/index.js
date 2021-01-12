@@ -21,10 +21,10 @@ export default function Home({tokens, gasPriceInit}) {
         {
           nav === 'swap' && (
               <motion.div
-                      initial={{opacity: 0}}
-                      animate={{opacity: 1}}
+                      initial={{opacity: 0.15}}
+                      animate={{opacity: 0.9}}
                       exit={{opacity: 0}}
-                      transition={{duration: 0.8}}
+                      transition={{duration: 1}}
                   >
                 <Swap tokens={tokens} />
               </motion.div>
@@ -33,10 +33,10 @@ export default function Home({tokens, gasPriceInit}) {
         {
           nav === 'pool' && (
               <motion.div
-                      initial={{opacity: 0}}
-                      animate={{opacity: 1}}
+                      initial={{opacity: 0.15}}
+                      animate={{opacity: .9}}
                       exit={{opacity: 0}}
-                      transition={{duration: 0.8}}
+                      transition={{duration: 1}}
                   >
                 <Pool />
               </motion.div>
