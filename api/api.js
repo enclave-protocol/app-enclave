@@ -16,11 +16,11 @@ export async function connectToMetamask() {
     isConnect = true
   } catch (e) {
     if (e.code === 4001) {
-      console.log('Please connect to MetaMask.')
       isConnect = false
+      console.log('Please connect to your wallet.')
     } else {
-      console.error(e.message)
       isConnect = false
+      console.error(e.message)
     }
   }
 
@@ -34,7 +34,7 @@ export async function getAccount() {
     accounts = await window.ethereum.request({method: 'eth_requestAccounts'})
   } catch (e) {
     if (e.code === 4001) {
-      console.log('Please connect to MetaMask.')
+      console.log('Please connect to your wallet.')
     } else {
       console.error(e.message)
     }
@@ -51,7 +51,7 @@ export async function getBalance() {
     balance = await window.ethereum.request({method: 'eth_getBalance', params: [account, 'latest']})
   } catch (e) {
     if (e.code === 4001) {
-      console.log('Please connect to MetaMask.')
+      console.log('Please connect to your wallet.')
     } else {
       console.error(e.message)
     }
