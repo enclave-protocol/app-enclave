@@ -1,4 +1,4 @@
-import {useState, useCallback, useRef, useContext, useEffect} from "react"
+import {useState, useRef, useContext, useEffect} from "react"
 import ThemeContext from "../theme/provider"
 
 export default function SelectInput({tokens, id, isReverse, value, change, setInfo, maxBalance, className, keyDown}) {
@@ -25,7 +25,7 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
     }
   }, [active])
 
-  const onChange = useCallback(event => {
+  const onChange = event => {
     const query = event.target.value
     setQuery(query)
 
@@ -42,7 +42,7 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
 
       setResults(addresses)
     }
-  }, [])
+  }
 
   const onClick = (event) => {
     if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -69,7 +69,7 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
                     type="text"
                     placeholder={id === '1' ? '0.000' : ''}
                     className='search'
-                    value={value.replace(',', '.')}
+                    value={value.replace(',', '.').slice(0, 8)}
                     id={`${id}`}
                     style={{width: `${!token && !logo ? '100%' : '52%'}`}}
                     onKeyPress={keyDown}
@@ -83,10 +83,22 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
                     logo && <img src={logo} alt="token"/>
                   }
 
-                  <svg ref={ref} onClick={openDropdown} id='svg' viewBox="0 0 14 8" fill="none"
-                       xmlns="http://www.w3.org/2000/svg">
-                    <path id='path' d="M1 1L7 7L13 1" stroke={theme.icon.select} strokeWidth="2" strokeLinecap="round"
-                          strokeLinejoin="round"/>
+                  <svg
+                      ref={ref}
+                      onClick={openDropdown}
+                      id='svg'
+                      viewBox="0 0 14 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                        id='path'
+                        d="M1 1L7 7L13 1"
+                        stroke={theme.icon.select}
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
                   </svg>
                 </div>
               </div>
@@ -98,7 +110,11 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
 
             <div className='search__wrapper' ref={searchRef}>
               <div>
-                <img onClick={() => searchRef.current.childNodes[0].childNodes[1].focus()} src='/search.svg' alt='search'/>
+                <img
+                    onClick={() => searchRef.current.childNodes[0].childNodes[1].focus()}
+                    src='/search.svg'
+                    alt='search'
+                />
                 <input
                     onChange={onChange}
                     value={query}
