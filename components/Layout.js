@@ -4,7 +4,7 @@ import Footer from "./Footer"
 import ThemeContext from "../theme/provider"
 import {useContext} from "react"
 
-export default function Layout({children, navHandler, btnStyles, gasPriceInit}) {
+export default function Layout({children, navHandler, btnStyles}) {
 
   const {theme} = useContext(ThemeContext)
 
@@ -36,7 +36,7 @@ export default function Layout({children, navHandler, btnStyles, gasPriceInit}) 
         <meta name="twitter:image" content="https://app.enclave.systems/logo.png"/>
       </Head>
       <div>
-        <Header gasPriceInit={gasPriceInit} navHandler={navHandler} btnStyles={btnStyles} />
+        <Header navHandler={navHandler} btnStyles={btnStyles} />
         <main>
           {children}
         </main>

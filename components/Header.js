@@ -3,16 +3,26 @@ import Image from "next/image"
 import {useState, useContext, useEffect} from "react"
 import {normalizeAddress, normalizeBalance} from "../utils/helpers"
 import ThemeContext from "../theme/provider"
-import {connectToMetamask, getAccount} from "../api/api"
+import {connectToMetamask, getAccount, getGasPrice} from "../api/api"
 import {getLocalStorage, setLocalStorage} from "../utils/localStorage"
 
-export default function Header({gasPriceInit, navHandler, btnStyles}) {
+export default function Header({navHandler, btnStyles}) {
 
   const {theme, toggleTheme} = useContext(ThemeContext)
 
   const [connect, useConnect] = useState(null)
   const [balance, useBalance] = useState(null)
-  const [gasPrice, useGasPrice] = useState(gasPriceInit)
+  const [gasPrice, useGasPrice] = useState(null)
+
+  useEffect(() => {
+    const getGas = async () => {
+      const {fastest} = await getGasPrice()
+      const gasPriceInit = fastest / 10
+      useGasPrice(gasPriceInit)
+    }
+
+    getGas()
+  }, [])
 
   const addressToLabel = connect ? normalizeAddress(connect) : 'Connect wallet'
   const balanceToLabel = balance ? normalizeBalance(balance) : '0.000'

@@ -2,10 +2,10 @@ import Layout from "../components/Layout"
 import Swap from "../components/Swap"
 import Pool from "../components/Pool"
 import {useState} from "react"
-import {getTokens, getGasPrice} from "../api/api"
+import {getTokens} from "../api/api"
 import {motion} from "framer-motion"
 
-export default function Home({tokens, gasPriceInit}) {
+export default function Home({tokens}) {
 
   const [nav, useNav] = useState('swap')
 
@@ -17,7 +17,7 @@ export default function Home({tokens, gasPriceInit}) {
   }
 
   return (
-      <Layout gasPriceInit={gasPriceInit} navHandler={navHandler} btnStyles={nav === 'swap'}>
+      <Layout navHandler={navHandler} btnStyles={nav === 'swap'}>
         {
           nav === 'swap' && (
               <motion.div
@@ -47,9 +47,6 @@ export default function Home({tokens, gasPriceInit}) {
 }
 
 export async function getServerSideProps() {
-  const {fastest} = await getGasPrice()
-  const gasPriceInit = fastest / 10
-
   const {tokens} = await getTokens()
 
   tokens.push({
@@ -63,8 +60,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      tokens: tokens,
-      gasPriceInit
+      tokens: tokens
     }
   }
 }
