@@ -3,11 +3,10 @@ import ThemeContext from "../theme/provider"
 import {getIpAndLocation} from "../api/api"
 
 export default function Footer() {
-
   const {theme} = useContext(ThemeContext)
 
   const [meta, useMeta] = useState({
-    ip: '192.168.0.0',
+    ip: '0.0.0.0',
     location: 'Location',
     country: 'Country'
   })
@@ -29,7 +28,7 @@ export default function Footer() {
 
   return (
       <footer>
-        <div>Alpha v. 0.4.7</div>
+        <div>Alpha v. 0.5.0</div>
           <nav>
             <a target='_blank' rel="nofollow noopener">Docs</a>
             <a target='_blank' rel="nofollow noopener">Api</a>
@@ -38,11 +37,13 @@ export default function Footer() {
           <div>
             {
               meta.ip &&
-              <>
-                <span>Your IP</span>
-                <span>&nbsp;{meta.ip},</span>
-                <span>&nbsp;{`${meta.location}, ${meta.country}`}</span>
-              </>
+              (
+                  <>
+                    <span>Your IP</span>
+                    <span>&nbsp;{meta.ip},</span>
+                    <span>&nbsp;{`${meta.location}, ${meta.country}`}</span>
+                  </>
+              )
             }
         </div>
 
@@ -53,7 +54,6 @@ export default function Footer() {
             align-items: center;
             flex: 0 0 auto;
             font-size: 14px;
-
             position: relative;
 
             & div:first-child {
