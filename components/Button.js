@@ -12,6 +12,15 @@ export default function Button({children, onClick, color, textShadow, ...props})
         </button>
 
         <style jsx>{`
+          .disabled {
+            cursor: not-allowed;
+            opacity: .5;
+
+            &:hover {
+              color: ${!color ? theme.header.btnColor : color} !important;
+            }
+          }
+          
           button {
             position: relative;
             background: ${theme.button.bg};

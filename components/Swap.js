@@ -98,6 +98,9 @@ export default function Swap({tokens}) {
 
   const [addressesCount, useAddressesCount] = useState([1, 2, 3])
 
+  const [btn, useBtn] = useState(false)
+  const [alert, useAlert] = useState(false)
+
   const addAddress = () => {
     if (addressesCount.length > 21) return
     useAddressesCount(prev => [...prev, prev.length + 1])
@@ -199,6 +202,12 @@ export default function Swap({tokens}) {
     }
   }
 
+  const swapHandler = () => {
+    if (btn) {
+      useAlert(prev => !prev)
+    }
+  }
+
   return (
       <>
         <Box title='Swap' menu={true} menuHandler={menuHandler} menuColor={menuColor}>
@@ -280,7 +289,12 @@ export default function Swap({tokens}) {
               </div>
               <div onClick={addAddress} className='more'>+&nbsp;<span>More</span></div>
             </div>
-            <Button className='button__swap active'>Swap</Button>
+            <Button
+                onClick={swapHandler}
+                className={`button__swap active ${btn ? '' : 'disabled'}`}
+            >
+              Swap
+            </Button>
           </div>
         </Box>
 
