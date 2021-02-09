@@ -1,12 +1,5 @@
 import {BigNumber, FixedNumber, ethers} from "ethers"
-
-export async function getTokens() {
-  const url = process.env.TOKENS_URL
-
-  const res = await fetch(url)
-
-  return await res.json()
-}
+import detectEthereumProvider from '@metamask/detect-provider'
 
 export async function connectToMetamask() {
   let isConnect
@@ -60,6 +53,13 @@ export async function getBalance() {
   return balance
 }
 
+export async function getChain() {
+  const provider = await detectEthereumProvider()
+  return await provider.request({
+    method: 'eth_chainId'
+  })
+}
+
 export async function getERC20Balance(addr) {
   const account = await getAccount()
 
@@ -92,6 +92,14 @@ export async function getGasPrice() {
   const url = process.env.GAS_URL
 
   const res = await fetch(url)
+  return await res.json()
+}
+
+export async function getTokens() {
+  const url = process.env.TOKENS_URL
+
+  const res = await fetch(url)
+
   return await res.json()
 }
 
