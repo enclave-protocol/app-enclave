@@ -1,9 +1,9 @@
-import {useState, useRef, useContext} from "react"
+import {useState, useRef, useContext, useEffect} from "react"
 import Button from "./Button"
 import ThemeContext from "../theme/provider"
 import {motion} from "framer-motion"
 
-const PopUp = ({close}) => {
+const PopUp = ({close, isPool, duration}) => {
 
   const ref = useRef(null)
   const {theme} = useContext(ThemeContext)
@@ -14,6 +14,16 @@ const PopUp = ({close}) => {
       close()
     }
   }
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    document.body.style.paddingRight = '5px'
+
+    return () => {
+      document.body.style.overflow = null
+      document.body.style.paddingRight = null
+    }
+  })
 
   const onEnter = () => {
     useColor('#F48432')
@@ -27,8 +37,9 @@ const PopUp = ({close}) => {
       <>
         <motion.div
               initial={{opacity: 0}}
-              animate={{opacity: 1}}
+              animate={{opacity: 1, zIndex: '100000'}}
               exit={{opacity: 0}}
+              transition={{duration}}
           >
             <section onClick={closeHandler}>
               <div ref={ref}>
@@ -72,7 +83,8 @@ const PopUp = ({close}) => {
             align-items: center;
             justify-content: center;
             background-color: rgba(36, 36, 36, 0.51);
-
+            z-index: 1000;
+            
             > div {
               background: ${theme.card.bg};
               box-shadow: ${theme.card.boxShadow};

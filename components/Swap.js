@@ -6,6 +6,7 @@ import {useState, useContext, useEffect} from "react"
 import ThemeContext from "../theme/provider"
 import {getPrice} from "../api/getPrices"
 import {connectToMetamask, getERC20Balance} from "../api/api"
+import PopUp from "./PopUp"
 
 export default function Swap({tokens}) {
   const {theme} = useContext(ThemeContext)
@@ -211,6 +212,14 @@ export default function Swap({tokens}) {
   return (
       <>
         <Box title='Swap' menu={true} menuHandler={menuHandler} menuColor={menuColor}>
+          {
+            alert &&
+            <PopUp
+                isPool={true}
+                duration={0}
+                close={() => useAlert(prev => !prev)}
+            />
+          }
           <div className='wrapper__inputs'>
             <div className='labels'>
               <label>From</label>
