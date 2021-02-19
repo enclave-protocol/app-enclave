@@ -41,6 +41,25 @@
   font-size: 18px;
   color: rgba(61, 60, 60, 0.5);
   font-weight: 700;
+
+  .alert-svg {
+    height: 21px;
+    width: 24px;
+  }
+
+  svg {
+    height: 21px;
+    width: 24px;
+  }
+
+  div:last-child {
+    margin-left: 1.75rem;
+  }
+
+  span {
+    color: red;
+    margin-right: 0;
+  }
 }
 
 @media screen and (min-width: 2000px) {
