@@ -7,7 +7,10 @@ export default function Button({children, onClick, color, textShadow, ...props})
 
   return (
       <>
-        <button onClick={onClick} {...props}>
+        <button
+            onClick={onClick}
+            {...props}
+        >
           {children}
         </button>
 
@@ -17,7 +20,7 @@ export default function Button({children, onClick, color, textShadow, ...props})
             opacity: .5;
 
             &:hover {
-              color: ${!color ? theme.header.btnColor : color} !important;
+              color: ${color ? color : theme.header.btnColor} !important;
             }
           }
           
@@ -62,6 +65,30 @@ export default function Button({children, onClick, color, textShadow, ...props})
             &.button__connect {
               width: 265px;
               height: 41px;
+            }
+            
+            &.button__more {
+              width: 90px;
+              height: 25px;
+              color: gray;
+              text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+              background: transparent;
+              
+              &:hover {
+                color: #F48432;
+              }
+            }
+
+            &.button__less {
+              width: 100px;
+              height: 32px;
+              color: #000;
+              text-shadow: 0 2px 2px rgba(0, 0, 0, 0.32);
+              opacity: .85;
+
+              &:hover {
+                color: #FFFFFF;
+              }
             }
 
             &.active {
