@@ -82,12 +82,12 @@ export default function Button({children, onClick, color, textShadow, ...props})
             &.button__less {
               width: 100px;
               height: 32px;
-              color: #000;
-              text-shadow: 0 2px 2px rgba(0, 0, 0, 0.32);
+              color: ${theme.swap.addresses.lessColor};
+              text-shadow: ${theme.swap.addresses.lessTextShadow};
               opacity: .85;
 
               &:hover {
-                color: #FFFFFF;
+                color: ${theme.swap.addresses.lessHover};
               }
             }
 
