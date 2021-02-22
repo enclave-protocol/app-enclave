@@ -2,10 +2,9 @@ import Layout from "../components/Layout"
 import Swap from "../components/Swap"
 import Pool from "../components/Pool"
 import {useState} from "react"
-import {getTokens} from "../api/api"
 import {motion} from "framer-motion"
 
-export default function Home({tokens}) {
+export default function Home() {
 
   const [nav, useNav] = useState('swap')
 
@@ -21,22 +20,22 @@ export default function Home({tokens}) {
         {
           nav === 'swap' && (
               <motion.div
-                      initial={{opacity: 0.15}}
-                      animate={{opacity: 0.9}}
+                      initial={{opacity: 0}}
+                      animate={{opacity: 1}}
                       exit={{opacity: 0}}
-                      transition={{duration: 1}}
+                      transition={{duration: .7}}
                   >
-                <Swap tokens={tokens} />
+                <Swap />
               </motion.div>
           )
         }
         {
           nav === 'pool' && (
               <motion.div
-                      initial={{opacity: 0.15}}
-                      animate={{opacity: .9}}
+                      initial={{opacity: 0}}
+                      animate={{opacity: 1}}
                       exit={{opacity: 0}}
-                      transition={{duration: 1}}
+                      transition={{duration: .7}}
                   >
                 <Pool />
               </motion.div>
@@ -44,23 +43,4 @@ export default function Home({tokens}) {
         }
       </Layout>
   )
-}
-
-export async function getServerSideProps() {
-  const {tokens} = await getTokens()
-
-  tokens.push({
-    "chainId": 1,
-    "address": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-    "name": "Ethereum",
-    "symbol": "ETH",
-    "decimals": 18,
-    "logoURI": "https://tokens.1inch.exchange/0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.png"
-  })
-
-  return {
-    props: {
-      tokens: tokens
-    }
-  }
 }
