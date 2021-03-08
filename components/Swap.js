@@ -5,15 +5,40 @@ import Menu from "./Menu"
 import {useState, useContext, useEffect} from "react"
 import ThemeContext from "../theme/provider"
 import {getPrice} from "../api/getPrices"
-import {connectToMetamask, getERC20Balance} from "../api/api"
+import {connectToMetamask, getERC20Balance, getTokens} from "../api/api"
 import PopUp from "./PopUp"
 
-export default function Swap({tokens}) {
+export default function Swap() {
   const {theme} = useContext(ThemeContext)
 
   const [loading, useLoading] = useState(false)
   const [reverse, useReverse] = useState(false)
   const [currentChanges, useCurrentChanges] = useState('')
+
+  const [tokens, useTokens] = useState(null)
+
+  useEffect(() => {
+    const getAllTokens = async () => {
+      const {tokens} = await getTokens()
+      tokens.push({
+        "chainId": 1,
+        "address": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+        "name": "Ethereum",
+        "symbol": "ETH",
+        "decimals": 18,
+        "logoURI": "https://tokens.1inch.exchange/0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.png"
+      })
+
+      useTokens(tokens)
+      useInput1(() => ({
+        ...input1,
+        addr: tokens[tokens.length - 1].address,
+        decimals: tokens[tokens.length - 1].decimals
+      }))
+    }
+
+    getAllTokens()
+  }, [])
 
   const [input1, useInput1] = useState({
     value: null,
