@@ -11,8 +11,15 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
   const [active, setActive] = useState(false)
   const [results, setResults] = useState([])
 
-  const [token, useToken] = useState(id === '1' ? tokens[tokens.length - 1].symbol : '')
-  const [logo, useLogo] = useState(id === '1' ? tokens[tokens.length - 1].logoURI : '')
+  const [token, useToken] = useState()
+  const [logo, useLogo] = useState()
+
+  useEffect(() => {
+    if (tokens) {
+      useToken(id === '1' ? tokens[tokens.length - 1].symbol : '')
+      useLogo(id === '1' ? tokens[tokens.length - 1].logoURI : '')
+    }
+  }, [tokens])
 
   useEffect(() => {
     if (active) searchRef.current.focus()
@@ -49,7 +56,7 @@ export default function SelectInput({tokens, id, isReverse, value, change, setIn
       if (event.target.id === 'svg' || event.target.id === 'path') {
         return
       }
-      setActive(() => false)
+      setActive(false)
     }
   }
 
