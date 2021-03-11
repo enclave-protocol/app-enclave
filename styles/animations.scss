@@ -75,6 +75,15 @@
       margin-right: 2rem;
     }
   }
+
+  .alert-header {
+    top: 5.35vw;
+
+    width: 59%;
+    height: 50%;
+
+    font-size: .9vw;
+  }
 }
 
 @media screen and (min-width: 3000px) and (max-height: 1500px) {
@@ -85,5 +94,14 @@
     height: 3.5vw;
     border-radius: .5vw;
     font-size: 0.7vw;
+  }
+
+  .alert-header {
+    top: 3.6vw;
+
+    width: 57%;
+    height: 60%;
+
+    font-size: .75vw;
   }
 }
