@@ -41,7 +41,7 @@ const PopUp = ({close, isPool, duration}) => {
               exit={{opacity: 0}}
               transition={{duration}}
           >
-            <section onClick={closeHandler}>
+            <section onClick={closeHandler} className={isPool ? '' : 'connect'}>
               <div ref={ref}>
                 {
                   !isPool && <h3>Connect to a wallet</h3>
@@ -137,11 +137,21 @@ const PopUp = ({close, isPool, duration}) => {
               flex-direction: column;
 
               position: relative;
+            }
 
-              h2 {
-                font-size: 32px;
-                font-weight: 400;
-              }
+            h2 {
+              font-size: 32px;
+              font-weight: 400;
+            }
+
+            h3 {
+              font-size: 34px;
+              font-weight: 700;
+            }
+
+            h4 {
+              font-size: 30px;
+              font-weight: 400;
             }
           }
 
@@ -169,6 +179,22 @@ const PopUp = ({close, isPool, duration}) => {
               height: 14px;
 
               cursor: pointer;
+            }
+          }
+
+          @media screen and (max-width: 2020px) {
+            .connect {
+              h4 {
+                font-size: 28px;
+              }
+
+              .content {
+                svg:nth-child(2) {
+                  margin-top: 1px;
+                  width: 28px;
+                  height: 28px;
+                }
+              }
             }
           }
 
@@ -253,6 +279,24 @@ const PopUp = ({close, isPool, duration}) => {
                 margin-top: 0;
               }
             }
+
+            .connect {
+              > div {
+                width: 450px;
+                height: 300px;
+                text-align: center;
+
+                .content {
+                  flex-direction: column;
+                  margin: 1rem auto 1rem;
+
+                  svg:nth-child(2) {
+                    margin-bottom: 10px;
+                    margin-right: 0;
+                  }
+                }
+              }
+            }
           }
 
           @media screen and (max-width: 500px) {
@@ -269,6 +313,21 @@ const PopUp = ({close, isPool, duration}) => {
               svg:nth-child(2) {
                 margin-bottom: 10px;
                 margin-right: 0;
+              }
+            }
+
+            .connect {
+              > div {
+                width: 400px;
+                margin: .5rem;
+              }
+            }
+          }
+
+          @media screen and (max-width: 400px) {
+            .connect {
+              > div {
+                height: 330px;
               }
             }
           }
