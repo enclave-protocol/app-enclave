@@ -9,9 +9,8 @@ export default function Home() {
   const [nav, useNav] = useState('swap')
 
   const navHandler = e => {
-    const target = e.target.textContent
+    const target = e.target.textContent.toLowerCase()
 
-    target.toLowerCase()
     useNav(target)
   }
 

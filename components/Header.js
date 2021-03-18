@@ -158,10 +158,10 @@ export default function Header({navHandler, btnStyles}) {
             {
               theme.name === 'dark'
                   ? <a href='/' className='home'>
-                    <img src='/new_main.svg' alt='logo'/>
+                    <img src='/main_dark.svg' alt='logo'/>
                   </a>
                   : <a href='/' className='home'>
-                    <img src='/main_icon_light.png' alt='logo'/>
+                    <img src='/main_light.png' alt='logo'/>
                   </a>
             }
             <div className='gas'>
