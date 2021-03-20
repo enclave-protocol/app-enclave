@@ -29,7 +29,7 @@ export default function Layout({children, navHandler, btnStyles}) {
         <meta property="og:description" content="Privacy solutions for Ethereum transactions."/>
         <meta property="og:image" content="https://app.enclave.systems/logo.png"/>
         <meta name="twitter:card" content="summary_large_image"/>
-        <meta property="twitter:domain" content="enclave.zone"/>
+        <meta property="twitter:domain" content="enclave.systems"/>
         <meta property="twitter:url" content="https://app.enclave.systems/"/>
         <meta name="twitter:title" content="Enclave App"/>
         <meta name="twitter:description" content="Privacy solutions for Ethereum transactions."/>
@@ -45,10 +45,10 @@ export default function Layout({children, navHandler, btnStyles}) {
 
       <style jsx global>{`
           html {
-            background-color: ${theme.name === 'dark' ? '#282C31' : '#EBECF0'};
+            background-color: ${theme.bg.color};
             background-image: ${theme.bg.body};
             font-size: 24px;
-            scrollbar-color: ${theme.name === 'dark' ? '#282C31 #101215' : '#EBECF0 #D0D9E0'};
+            scrollbar-color: ${theme.bg.mozColor};
             scrollbar-width: thin;
           }
 
@@ -112,10 +112,28 @@ export default function Layout({children, navHandler, btnStyles}) {
             flex: 1 0 auto;
             margin: 3rem auto 2.5rem;
           }
+          
+          @media screen and (max-width: 1300px) {
+            main {
+              margin: 4rem auto 2.5rem;
+            }
+          }
+          
+          @media screen and (max-width: 830px) {
+            main {
+              margin: 2rem auto 2.5rem;
+            }
+           }
 
           @media screen and (max-width: 720px) {
             main {
               margin-bottom: 2rem;
+            }
+          }
+          
+          @media screen and (max-width: 550px) {
+            main {
+              margin: 3rem auto 2.5rem;
             }
           }
 
