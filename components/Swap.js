@@ -42,8 +42,8 @@ export default function Swap() {
 
   const [input1, useInput1] = useState({
     value: null,
-    addr: tokens[tokens.length - 1].address,
-    decimals: tokens[tokens.length - 1].decimals,
+    addr: '',
+    decimals: '',
     price: ''
   })
 
@@ -123,6 +123,9 @@ export default function Swap() {
   const [menuColor, useMenuColor] = useState(false)
 
   const [addressesCount, useAddressesCount] = useState([1, 2, 3])
+  const [addresses, useAddresses] = useState({})
+  const [length, useLength] = useState(0)
+  const [commission, useCommission] = useState('0.0000')
 
   const [btn, useBtn] = useState(false)
   const [alert, useAlert] = useState(false)
@@ -130,6 +133,90 @@ export default function Swap() {
   const addAddress = () => {
     if (addressesCount.length > 21) return
     useAddressesCount(prev => [...prev, prev.length + 1])
+  }
+
+  const addressHandler = e => {
+    const id = e.target.id - 10
+    const value = e.target.value
+
+    if (value.trim().startsWith('0x') && 39 < value.trim().length && 43 > value.trim().length) {
+      const _addresses = addresses
+      _addresses[id] = value
+      useAddresses(_addresses)
+
+      if (isCorrect(_addresses)) useBtn(true)
+
+      useLength(typeof length === 'number' ? Object.keys(_addresses).length.toString() : Object.keys(_addresses).length)
+    } else {
+      const _addresses = addresses
+      if (value.trim()) {
+        _addresses[id] = value
+        useAddresses(_addresses)
+        useBtn(false)
+      } else {
+
+        delete _addresses[id]
+        useAddresses(_addresses)
+        if (Object.keys(_addresses).length) {
+          if (isCorrect(_addresses)) useBtn(true)
+        }
+      }
+      useLength(typeof length === 'number' ? Object.keys(_addresses).length.toString() : Object.keys(_addresses).length)
+    }
+  }
+
+  const isCorrect = (_addresses) => {
+    if (Object.keys(_addresses).length) {
+      let _isCorrect = []
+      Object.values(_addresses).forEach(addr => {
+        if (addr.trim().startsWith('0x') && 39 < addr.trim().length && 43 > addr.trim().length) {
+          _isCorrect.push(true)
+        } else {
+          _isCorrect.push(false)
+        }
+      })
+
+      return _isCorrect.length && !_isCorrect.includes(false)
+    }
+  }
+
+  useEffect(() => {
+    calcCommission()
+  }, [btn, length])
+
+  const calcCommission = () => {
+    let isCorrect = []
+    Object.values(addresses).forEach(addr => {
+      if (addr.trim().startsWith('0x') && 39 < addr.trim().length && 43 > addr.trim().length) {
+        isCorrect.push(true)
+      }
+    })
+
+    if (isCorrect.includes(true)) {
+      if (isCorrect.length > 1) {
+        useCommission((isCorrect.length - 1) * 0.0021)
+      } else if (isCorrect.length === 1) {
+        useCommission('0.0000')
+      }
+    }
+  }
+
+  const addressFocus = e => {
+    e.target.style.borderColor = '#F48432'
+  }
+
+  const addressBlur = e => {
+    const value = e.target.value
+
+    if (!value.trim()) {
+      e.target.style.borderColor = '#bebebe'
+      return
+    }
+    if (value.trim().startsWith('0x') && 39 < value.trim().length && 43 > value.trim().length) {
+      e.target.style.borderColor = '#bebebe'
+    } else {
+      e.target.style.borderColor = 'red'
+    }
   }
 
   const menuHandler = () => {
@@ -299,7 +386,15 @@ export default function Swap() {
             <div className='addresses'>
               {
                 addressesCount.map((_, index) => {
-                  return <input key={index} type="text" placeholder='0x0000'/>
+                  return <input
+                      onChange={addressHandler}
+                      onFocus={addressFocus}
+                      onBlur={addressBlur}
+                      id={index + 10}
+                      key={index}
+                      type="text"
+                      placeholder='0x0000'
+                  />
                 })
               }
             </div>
@@ -319,7 +414,7 @@ export default function Swap() {
                 <span style={{
                   color: theme.swap.addresses.ethColor,
                   textShadow: theme.swap.addresses.ethTextShadow
-                }}>&nbsp;0.000</span>
+                }}>&nbsp;{commission.toString().slice(0, 6)}</span>
               </div>
               <div onClick={addAddress} className='more'>+&nbsp;<span>More</span></div>
             </div>
