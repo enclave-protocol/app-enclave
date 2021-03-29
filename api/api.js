@@ -2,13 +2,15 @@ import {BigNumber, FixedNumber, ethers} from "ethers"
 import detectEthereumProvider from '@metamask/detect-provider'
 
 export async function connectToMetamask() {
-  let isConnect
-
   if (!window.ethereum) return undefined
 
+  let isConnect
+
   try {
-    await window.ethereum.request({method: 'eth_requestAccounts'})
-    isConnect = true
+    const connect = await window.ethereum.request({method: 'eth_requestAccounts'})
+    if (connect) {
+      isConnect = true
+    }
   } catch (e) {
     if (e.code === 4001) {
       isConnect = false
@@ -40,8 +42,12 @@ export async function getAccount() {
 
 export async function getBalance() {
   let balance
-
   const account = await getAccount()
+
+  if (!account) {
+    return
+  }
+
   try {
     balance = await window.ethereum.request({method: 'eth_getBalance', params: [account, 'latest']})
   } catch (e) {
@@ -64,6 +70,10 @@ export async function getChain() {
 
 export async function getERC20Balance(addr) {
   const account = await getAccount()
+
+  if (!account) {
+    return
+  }
 
   if (addr === '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE') {
     const bal = await getBalance()
@@ -92,14 +102,13 @@ export async function getERC20Balance(addr) {
 
 export async function getGasPrice() {
   const url = process.env.GAS_URL
-
   const res = await fetch(url)
+
   return await res.json()
 }
 
 export async function getTokens() {
   const url = process.env.TOKENS_URL
-
   const res = await fetch(url)
 
   return await res.json()
@@ -107,7 +116,7 @@ export async function getTokens() {
 
 export async function getIpAndLocation() {
   const url = process.env.IP_URL
-
   const res = await fetch(url)
+
   return res.json()
 }
